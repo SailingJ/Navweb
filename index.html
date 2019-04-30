@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div id="keyboard"></div>
+    </main>
+    <footer></footer>
+</body>
+<script>
+    keys={
+        '0':['q','w','e','r','t','y','u','i','o','p'],//length:10
+        '1':['a','s','d','f','g','h','j','k','l'],//length:9
+        '2':['z','x','c','v','b','n','m',],//length:7
+        length:3
+    }
+    hash ={
+        'q':'qq.com',
+        'w':'weibo.com',
+        'e':'ele.me',
+        'r':'renren.com',
+        'a':'acfun.com',
+        'l':'dilidili.name',
+        'z':'zhihu.com',
+        'm':'https://www.mcdonalds.com.cn',
+    }
+    hashInlocalStorage = JSON.parse(localStorage.getItem('uuu')||'')//取出localStorage中的uuu对应的hash
+        if(hashInlocalStorage){
+            hash = hashInlocalStorage
+        }
+    index = 0
+    while(index<keys['length']){
+        divRow = document.createElement('div')
+        keyboard.appendChild(divRow)
+        row = keys[index]//第一、二、三个数组
+        index2 = 0
+        while(index2<row.length){
+            kbdBtm = document.createElement('kbd')
+            kbdBtm.textContent = row[index2]
+            editBtm = document.createElement('button')
+            kbdBtm.appendChild(editBtm)
+            divRow.appendChild(kbdBtm)
+            editBtm.textContent = 'E'
+            editBtm.id = row[index2]
+            editBtm.onclick = function(skrskrskr){
+                key = skrskrskr.target.id
+                x = prompt('给我一个网站')
+                hash[key] = x //hash变更
+                localStorage.setItem('uuu', JSON.stringify(hash))
+                console.log(hash)
+            }
+            index2 = index2+1
+        }
+        index = index+1
+
+    }
+    document.onkeypress = function(skrskrskr){
+        key = skrskrskr.key
+        website = hash[key]
+        window.open('http://'+website, '_blank')
+    }
+       
+    
+
+    
+</script>
+</html>
