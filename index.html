@@ -10,7 +10,10 @@
 <body>
     <header></header>
     <main>
+        <div id="main">
         <div id="keyboard"></div>
+        </div>
+        
     </main>
     <footer></footer>
 </body>
@@ -47,7 +50,7 @@
             editBtm = document.createElement('button')
             kbdBtm.appendChild(editBtm)
             divRow.appendChild(kbdBtm)
-            editBtm.textContent = 'E'
+            editBtm.textContent = '编辑'
             editBtm.id = row[index2]
             editBtm.onclick = function(skrskrskr){
                 key = skrskrskr.target.id
